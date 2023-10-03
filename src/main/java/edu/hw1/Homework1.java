@@ -27,6 +27,5 @@ public final class Homework1 {
 
     public static void main(String[] args) {
         HelloWorld();
-        minutesToSeconds("12:35");
     }
 }
