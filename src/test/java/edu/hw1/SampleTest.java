@@ -6,17 +6,25 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class SampleTest {
     @Test
-    @DisplayName("Фильтрация четных чисел")
+    @DisplayName("Длина видео")
     void filterEvenNumbers() {
         // given
-        int[] numbers = new int[] {1, 2, 3, 4, 5};
+        {
+            String value = "00:00";
+            int time_returned = Homework1.minutesToSeconds(value);
+            assertThat(time_returned).isEqualTo(0);
+        }
 
-        // when
-        int[] evenNumbers = EvenArrayUtils.filter(numbers);
+        {
+            String value = "13:56";
+            int time_returned = Homework1.minutesToSeconds(value);
+            assertThat(time_returned).isEqualTo(836);
+        }
 
-        // then
-        assertThat(evenNumbers)
-            .containsExactly(2, 4)
-            .hasSize(2);
+        {
+            String value = "10:60";
+            int time_returned = Homework1.minutesToSeconds(value);
+            assertThat(time_returned).isEqualTo(-1);
+        }
     }
 }

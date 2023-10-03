@@ -33,6 +33,9 @@ public final class EvenArrayUtils {
         return result;
     }
 
+    public static void HelloWorld() {
+        LOGGER.info("Привет, мир!");
+    }
     /**
      * Counts the number of even integers in an array of integers.
      *
@@ -50,5 +53,9 @@ public final class EvenArrayUtils {
             }
         }
         return count;
+    }
+
+    public static void main(String[] args) {
+        HelloWorld();
     }
 }
