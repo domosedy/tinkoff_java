@@ -137,4 +137,91 @@ public class SampleTest {
         assertThat(Homework1.rotateRight(0, 100)).isEqualTo(0);
 
     }
+
+    @Test
+    @DisplayName("Кони на доске")
+    void knightBoardCapture() {
+        {
+            int[][] board = {
+                {0, 0, 0, 1, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 1, 0, 0, 0, 1, 0, 0},
+                {0, 0, 0, 0, 1, 0, 1, 0},
+                {0, 1, 0, 0, 0, 1, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 1, 0, 0, 0, 0, 0, 1},
+                {0, 0, 0, 0, 1, 0, 0, 0}
+            };
+
+            assertThat(Homework1.knightBoardCapture(board)).isEqualTo(true);
+        }
+
+        {
+            int[][] board = {
+                {1, 0, 1, 0, 1, 0, 1, 0},
+                {0, 1, 0, 1, 0, 1, 0, 1},
+                {0, 0, 0, 0, 1, 0, 1, 0},
+                {0, 0, 1, 0, 0, 1, 0, 1},
+                {1, 0, 0, 0, 1, 0, 1, 0},
+                {0, 0, 0, 0, 0, 1, 0, 1},
+                {1, 0, 0, 0, 1, 0, 1, 0},
+                {0, 0, 0, 1, 0, 1, 0, }
+            };
+
+            assertThat(Homework1.knightBoardCapture(board)).isEqualTo(false);
+        }
+
+        {
+            int[][] board = {
+                {0, 0, 0, 0, 1, 0, 0, 0},
+                {0, 0, 0, 0, 0, 1, 0, 0},
+                {0, 0, 0, 1, 0, 0, 0, 0},
+                {1, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 1, 0, 0, 0},
+                {0, 0, 0, 0, 0, 1, 0, 0},
+                {0, 0, 0, 0, 0, 1, 0, 0},
+                {1, 0, 0, 0, 0, 0, 0, 0}
+            };
+
+            assertThat(Homework1.knightBoardCapture(board)).isEqualTo(false);
+        }
+
+        {
+            int[][] board = {
+                {0, 1}
+            };
+
+            assertThat(Homework1.knightBoardCapture(board)).isEqualTo(false);
+        }
+
+        {
+            int[][] board = {
+                {0},
+                {0},
+                {0},
+                {0},
+                {0},
+                {0},
+                {0},
+                {0}
+            };
+
+            assertThat(Homework1.knightBoardCapture(board)).isEqualTo(false);
+        }
+
+        {
+            int[][] board = {
+                {0, 2, 0, 1, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 1, 0, 0, 0, 1, 0, 0},
+                {0, 0, 0, 0, 1, 0, 1, 0},
+                {0, 1, 0, 0, 0, 1, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 1, 0, 0, 0, 0, 0, 1},
+                {0, 0, 0, 0, 1, 0, 0, 0}
+            };
+
+            assertThat(Homework1.knightBoardCapture(board)).isEqualTo(false);
+        }
+    }
 }
