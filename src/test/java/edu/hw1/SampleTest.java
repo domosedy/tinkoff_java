@@ -43,9 +43,57 @@ public class SampleTest {
     @Test
     @DisplayName("Вложенные массивы")
     void isNestable() {
-        int[] nesty = {1, 2, 3, 4};
-        int[] container = {0, 6};
+        {
+            int[] nesty = {1, 2, 3, 4};
+            int[] container = {0, 6};
 
-        assertThat(Homework1.isNestable(nesty, container)).isEqualTo(true);
+            assertThat(Homework1.isNestable(nesty, container)).isEqualTo(true);
+        }
+
+        {
+            int[] nesty = {3, 1};
+            int[] container = {4, 0};
+
+            assertThat(Homework1.isNestable(nesty, container)).isEqualTo(true);
+        }
+
+        {
+            int[] nesty = {9, 9, 8};
+            int[] container = {8, 9};
+
+            assertThat(Homework1.isNestable(nesty, container)).isEqualTo(false);
+        }
+
+        {
+            int[] nesty = {1, 2, 3, 4};
+            int[] container = {2, 3};
+
+            assertThat(Homework1.isNestable(nesty, container)).isEqualTo(false);
+        }
+
+        {
+            int[] nesty = {};
+            int[] container = {0, 6};
+
+            assertThat(Homework1.isNestable(nesty, container)).isEqualTo(true);
+        }
+
+        {
+            int[] nesty = {1, 2, 3, 4};
+            int[] container = {};
+
+            assertThat(Homework1.isNestable(nesty, container)).isEqualTo(false);
+        }
+    }
+
+    @Test
+    @DisplayName("Сломанная строка")
+    void fixedString() {
+        assertThat(Homework1.fixString("123456")).isEqualTo("214365");
+        assertThat(Homework1.fixString("hTsii  s aimex dpus rtni.g"))
+            .isEqualTo("This is a mixed up string.");
+        assertThat(Homework1.fixString("badce")).isEqualTo("abcde");
+        assertThat(Homework1.fixString("")).isEqualTo("");
+        assertThat(Homework1.fixString("1")).isEqualTo("1");
     }
 }
