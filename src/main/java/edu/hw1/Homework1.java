@@ -1,9 +1,9 @@
 package edu.hw1;
 
+import java.util.Arrays;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
-import java.util.Arrays;
 
 public final class Homework1 {
     private final static Logger LOGGER = LogManager.getLogger();
@@ -16,7 +16,7 @@ public final class Homework1 {
         LOGGER.info("Привет, мир!");
     }
 
-    @SuppressWarnings("MagicNumbers")
+    @SuppressWarnings("MagicNumber")
     public static int minutesToSeconds(@NotNull String currentTime) {
         int minutes = Integer.parseInt(currentTime.substring(0, 2));
         int seconds = Integer.parseInt(currentTime.substring(3, 5));
