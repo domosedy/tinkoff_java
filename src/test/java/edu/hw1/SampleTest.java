@@ -109,4 +109,16 @@ public class SampleTest {
         assertThat(Homework1.isPalindromeDescendant(9)).isEqualTo(false);
         assertThat(Homework1.isPalindromeDescendant(-1)).isEqualTo(false);
     }
+
+    @Test
+    @DisplayName("Постоянная Капрекара")
+    void countK() {
+        assertThat(Homework1.countK(6621)).isEqualTo(5);
+        assertThat(Homework1.countK(6554)).isEqualTo(4);
+        assertThat(Homework1.countK(1234)).isEqualTo(3);
+        assertThat(Homework1.countK(-1)).isEqualTo(-1);
+        assertThat(Homework1.countK(1000)).isEqualTo(-1);
+        assertThat(Homework1.countK(1111)).isEqualTo(-1);
+        assertThat(Homework1.countK(12345)).isEqualTo(-1);
+    }
 }

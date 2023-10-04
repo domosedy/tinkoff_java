@@ -1,6 +1,9 @@
 package edu.hw1;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.stream.IntStream;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
@@ -131,7 +134,60 @@ public final class Homework1 {
 
         return false;
     }
-//    public static void main(String[] args) {
-//        helloWorld();
-//    }
+
+    private static int toNumberFromArray(int[] digits) {
+        StringBuilder digitsString = new StringBuilder();
+
+        for (int digit : digits) {
+            digitsString.append(digit);
+        }
+
+        return  Integer.parseInt(digitsString.toString());
+    }
+
+    private static void reverse(int[] array) {
+        for (int i = 0; i * 2 < array.length; i++) {
+            int temp = array[i];
+            array[i] = array[array.length - 1 - i];
+            array[array.length - 1 - i] = temp;
+        }
+    }
+
+    public static int countK(int inputNumber) {
+        if (inputNumber <= 1e3 || inputNumber >= 1e4) {
+            return -1;
+        } else if (inputNumber == 6174) {
+            return 0;
+        }
+
+        var number = inputNumber;
+        ArrayList<Integer> numberDigits = new ArrayList<Integer>();
+
+        while (number > 0) {
+            numberDigits.add(number % BASIS);
+            number /= BASIS;
+        }
+
+        int[] numberWithoutDuplicates = numberDigits.stream().mapToInt(Integer::intValue).toArray();
+
+        Arrays.sort(numberWithoutDuplicates);
+        if (numberWithoutDuplicates[0] == numberWithoutDuplicates[numberWithoutDuplicates.length - 1]) {
+            return -1;
+        }
+
+        var lowerNum = toNumberFromArray(numberWithoutDuplicates);
+
+        reverse(numberWithoutDuplicates);
+        var biggerNum = toNumberFromArray(numberWithoutDuplicates);
+
+        var returned = countK(biggerNum - lowerNum);
+
+        return switch (returned) {
+            case -1 -> -1;
+            default -> returned + 1;
+        };
+    }
+    public static void main(String[] args) {
+        LOGGER.info(countK(6621));
+    }
 }
