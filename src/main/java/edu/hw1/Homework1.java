@@ -2,30 +2,69 @@ package edu.hw1;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
+import java.util.Arrays;
 
 public final class Homework1 {
     private final static Logger LOGGER = LogManager.getLogger();
+    private final static int SECONDS_IN_MINUTE = 60;
 
     private Homework1() {
     }
 
-    public static void HelloWorld() {
+    public static void helloWorld() {
         LOGGER.info("Привет, мир!");
     }
 
-    public static int minutesToSeconds(String current_time) {
-        int minutes = Integer.parseInt(current_time.substring(0, 2));
-        int seconds = Integer.parseInt(current_time.substring(3, 5));
+    @SuppressWarnings("MagicNumbers")
+    public static int minutesToSeconds(@NotNull String currentTime) {
+        int minutes = Integer.parseInt(currentTime.substring(0, 2));
+        int seconds = Integer.parseInt(currentTime.substring(3, 5));
 
-        if (seconds >= 60) {
+        if (seconds >= SECONDS_IN_MINUTE) {
             return -1;
         }
 
-        return minutes * 60 + seconds;
+        return minutes * SECONDS_IN_MINUTE + seconds;
+    }
+
+    public static int countDigits(int number) {
+        if (number == 0) {
+            return 1;
+        } else if (number < 0) {
+            number *= -1;
+        }
+
+        final int BASIS = 10;
+        int numberOfDigits = 0;
+
+        while (number > 0) {
+            numberOfDigits++;
+
+            number /= BASIS;
+        }
+
+        return numberOfDigits;
+    }
+
+    public static boolean isNestable(int[] nestyArray, int[] container) {
+        if (container.length == 0) {
+            return false;
+        } else if (nestyArray.length == 0) {
+            return true;
+        }
+
+        int maxInFirst = Arrays.stream(nestyArray).max().getAsInt();
+        int minInFirst = Arrays.stream(nestyArray).min().getAsInt();
+
+        int maxInSecond = Arrays.stream(container).max().getAsInt();
+        int minInSecond = Arrays.stream(container).min().getAsInt();
+
+        return (minInSecond <= minInFirst) && (maxInFirst <= maxInSecond);
     }
 
 
-    public static void main(String[] args) {
-        HelloWorld();
-    }
+//    public static void main(String[] args) {
+//        helloWorld();
+//    }
 }
