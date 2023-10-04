@@ -29,6 +29,7 @@ public final class Homework1 {
     }
 
     public static int countDigits(int inputNumber) {
+
         if (inputNumber == 0) {
             return 1;
         } else if (inputNumber < 0) {
@@ -37,11 +38,12 @@ public final class Homework1 {
 
         final int BASIS = 10;
         int inputNumberOfDigits = 0;
+        int number = inputNumber;
 
-        while (inputNumber > 0) {
+        while (number > 0) {
             inputNumberOfDigits++;
 
-            inputNumber /= BASIS;
+            number /= BASIS;
         }
 
         return inputNumberOfDigits;
