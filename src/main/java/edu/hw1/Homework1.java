@@ -28,23 +28,23 @@ public final class Homework1 {
         return minutes * SECONDS_IN_MINUTE + seconds;
     }
 
-    public static int countDigits(int number) {
-        if (number == 0) {
+    public static int countDigits(int inputNumber) {
+        if (inputNumber == 0) {
             return 1;
-        } else if (number < 0) {
-            number *= -1;
+        } else if (inputNumber < 0) {
+            inputNumber *= -1;
         }
 
         final int BASIS = 10;
-        int numberOfDigits = 0;
+        int inputNumberOfDigits = 0;
 
-        while (number > 0) {
-            numberOfDigits++;
+        while (inputNumber > 0) {
+            inputNumberOfDigits++;
 
-            number /= BASIS;
+            inputNumber /= BASIS;
         }
 
-        return numberOfDigits;
+        return inputNumberOfDigits;
     }
 
     public static boolean isNestable(int[] nestyArray, int[] container) {
