@@ -2,8 +2,6 @@ package edu.hw1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.stream.IntStream;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
@@ -153,6 +151,7 @@ public final class Homework1 {
         }
     }
 
+    @SuppressWarnings("MagicNumber")
     public static int countK(int inputNumber) {
         if (inputNumber <= 1e3 || inputNumber >= 1e4) {
             return -1;
@@ -187,7 +186,8 @@ public final class Homework1 {
             default -> returned + 1;
         };
     }
-    public static void main(String[] args) {
-        LOGGER.info(countK(6621));
-    }
+
+//    public static void main(String[] args) {
+//        LOGGER.info(countK(6621));
+//    }
 }
