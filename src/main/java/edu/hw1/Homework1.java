@@ -8,6 +8,8 @@ import org.jetbrains.annotations.NotNull;
 public final class Homework1 {
     private final static Logger LOGGER = LogManager.getLogger();
     private final static int SECONDS_IN_MINUTE = 60;
+    private final static int BASIS = 10;
+
 
     private Homework1() {
     }
@@ -37,12 +39,10 @@ public final class Homework1 {
             number *= -1;
         }
 
-        final int BASIS = 10;
         int inputNumberOfDigits = 0;
 
         while (number > 0) {
             inputNumberOfDigits++;
-
             number /= BASIS;
         }
 
@@ -80,7 +80,57 @@ public final class Homework1 {
         return currentString.toString();
     }
 
+    private static int getReversedNum(int number) {
+        if (number == 0) {
+            return 0;
+        }
 
+        int numCopy = number;
+
+        int reversedNum = 0;
+
+        while (numCopy > 0) {
+            reversedNum = reversedNum * BASIS + numCopy % BASIS;
+            numCopy /= BASIS;
+        }
+
+        return reversedNum;
+    }
+
+    @SuppressWarnings("MagicNumber")
+    public static boolean isPalindromeDescendant(int inputValue) {
+        if (inputValue < 10) {
+            return false;
+        }
+
+        int number = inputValue;
+
+        while (number >= 10) {
+            if (number == getReversedNum(number)) {
+                return true;
+            }
+
+            StringBuilder newNum = new StringBuilder();
+            String oldNum = Integer.toString(number);
+
+            for (int i = 0; i < oldNum.length(); i += 2) {
+                if (i + 1 < oldNum.length()) {
+                    int newDigit = Integer.parseInt(String.valueOf(oldNum.charAt(i)))
+                                    + Integer.parseInt(String.valueOf(oldNum.charAt(i + 1)));
+
+                    newNum.append(newDigit);
+                } else {
+                    int newDigit = Integer.parseInt(String.valueOf(oldNum.charAt(i)));
+                    newNum.append(newDigit);
+                }
+            }
+
+            number = Integer.parseInt(newNum.toString());
+            LOGGER.debug("New number is " + String.valueOf(number));
+        }
+
+        return false;
+    }
 //    public static void main(String[] args) {
 //        helloWorld();
 //    }

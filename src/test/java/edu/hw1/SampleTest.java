@@ -96,4 +96,17 @@ public class SampleTest {
         assertThat(Homework1.fixString("")).isEqualTo("");
         assertThat(Homework1.fixString("1")).isEqualTo("1");
     }
+
+    @Test
+    @DisplayName("Особый палиндром")
+    void isStrangePalindrome() {
+        assertThat(Homework1.isPalindromeDescendant(11211230)).isEqualTo(true);
+        assertThat(Homework1.isPalindromeDescendant(13001120)).isEqualTo(true);
+        assertThat(Homework1.isPalindromeDescendant(23336014)).isEqualTo(true);
+        assertThat(Homework1.isPalindromeDescendant(12)).isEqualTo(false);
+        assertThat(Homework1.isPalindromeDescendant(1299)).isEqualTo(false);
+        assertThat(Homework1.isPalindromeDescendant(11)).isEqualTo(true);
+        assertThat(Homework1.isPalindromeDescendant(9)).isEqualTo(false);
+        assertThat(Homework1.isPalindromeDescendant(-1)).isEqualTo(false);
+    }
 }
