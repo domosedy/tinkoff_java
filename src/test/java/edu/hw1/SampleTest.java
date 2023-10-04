@@ -121,4 +121,20 @@ public class SampleTest {
         assertThat(Homework1.countK(1111)).isEqualTo(-1);
         assertThat(Homework1.countK(12345)).isEqualTo(-1);
     }
+
+    @Test
+    @DisplayName("Циклический битовый сдвиг")
+    void bitShift() {
+        assertThat(Homework1.rotateLeft(16, 1)).isEqualTo(1);
+        assertThat(Homework1.rotateRight(16, 1)).isEqualTo(8);
+        assertThat(Homework1.rotateRight(16, -1)).isEqualTo(1);
+        assertThat(Homework1.rotateRight(16, -6)).isEqualTo(1);
+        assertThat(Homework1.rotateRight(16, -5)).isEqualTo(16);
+        assertThat(Homework1.rotateLeft(17, 2)).isEqualTo(6);
+        assertThat(Homework1.rotateLeft(17, 7)).isEqualTo(6);
+        assertThat(Homework1.rotateLeft(17, -8)).isEqualTo(6);
+        assertThat(Homework1.rotateLeft(0, 100)).isEqualTo(0);
+        assertThat(Homework1.rotateRight(0, 100)).isEqualTo(0);
+
+    }
 }

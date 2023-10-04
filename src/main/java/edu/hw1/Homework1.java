@@ -127,20 +127,19 @@ public final class Homework1 {
             }
 
             number = Integer.parseInt(newNum.toString());
-            LOGGER.debug("New number is " + String.valueOf(number));
         }
 
         return false;
     }
 
-    private static int toNumberFromArray(int[] digits) {
+    private static int toNumberFromArray(int[] digits, int radix) {
         StringBuilder digitsString = new StringBuilder();
 
         for (int digit : digits) {
             digitsString.append(digit);
         }
 
-        return  Integer.parseInt(digitsString.toString());
+        return  Integer.parseInt(digitsString.toString(), radix);
     }
 
     private static void reverse(int[] array) {
@@ -174,10 +173,10 @@ public final class Homework1 {
             return -1;
         }
 
-        var lowerNum = toNumberFromArray(numberWithoutDuplicates);
+        var lowerNum = toNumberFromArray(numberWithoutDuplicates, BASIS);
 
         reverse(numberWithoutDuplicates);
-        var biggerNum = toNumberFromArray(numberWithoutDuplicates);
+        var biggerNum = toNumberFromArray(numberWithoutDuplicates, BASIS);
 
         var returned = countK(biggerNum - lowerNum);
 
@@ -187,7 +186,83 @@ public final class Homework1 {
         };
     }
 
+    private static int[] transformIntToBit(int number) {
+        final int CURR_BASIS = 2;
+        ArrayList<Integer> bitNumber = new ArrayList<Integer>();
+
+        int currNumber = number;
+
+        if (currNumber == 0) {
+            return new int[]{0};
+        }
+
+        while (currNumber > 0) {
+            bitNumber.add(currNumber % CURR_BASIS);
+            currNumber /= CURR_BASIS;
+        }
+
+        int[] num = bitNumber.stream().mapToInt(Integer::intValue).toArray();
+        reverse(num);
+        return num;
+    }
+
+    private static int getBitLength(int inputNumber) {
+        if (inputNumber == 0) {
+            return 1;
+        }
+
+        int number = inputNumber;
+        int count = 0;
+
+        while (number > 0) {
+            count++;
+            number >>= 1;
+        }
+        return count;
+    }
+
+    public static int rotateLeft(int inputNumber, int inputShift) {
+        int shift = inputShift;
+        var bitNumber = transformIntToBit(inputNumber);
+
+        shift %= bitNumber.length;
+
+        if (shift < 0) {
+            shift += bitNumber.length;
+        }
+
+        int[] tempBits = new int[shift];
+
+        for (int i = 0; i < shift; i++) {
+            tempBits[i] = bitNumber[i];
+        }
+
+        for (int i = shift; i < bitNumber.length; i++) {
+            bitNumber[i - shift] = bitNumber[i];
+        }
+
+        for (int i = 0; i < shift; i++) {
+            bitNumber[i + bitNumber.length - shift] = tempBits[i];
+        }
+
+        return toNumberFromArray(bitNumber, 2);
+    }
+
+    public static int rotateRight(int inputNumber, int inputShift) {
+        int shift = inputShift;
+        int len = getBitLength(inputNumber);
+
+        shift = len - shift;
+        shift %= len;
+
+        if (shift < 0) {
+            shift += len;
+        }
+
+        return rotateLeft(inputNumber, shift);
+    }
+
 //    public static void main(String[] args) {
-//        LOGGER.info(countK(6621));
+//        LOGGER.info(rotateRight(8, 1));
 //    }
 }
