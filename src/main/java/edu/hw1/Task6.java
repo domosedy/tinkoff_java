@@ -57,10 +57,9 @@ public final class Task6 {
 
         var returned = countK(biggerNum - lowerNum);
 
-        if (returned == -1) {
-            return -1;
-        } else {
-            return returned + 1;
-        }
+        return switch (returned) {
+            case -1 -> -1;
+            default -> returned + 1;
+        };
     }
 }
